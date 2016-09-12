@@ -1337,12 +1337,15 @@ PDPYINFO pDpyInfo;
         */
 
         /* fake vertical conversion table */
-        for (counter = 0; counter < fromHeight; ++counter)
-          yTable[counter] = counter % (toHeight - 1);
-
+        for (counter = 0; counter < fromHeight; ++counter) {
+	  if (counter > toHeight - 1) 	yTable[counter] = toHeight -1;
+          else 				yTable[counter] = counter % (toHeight - 1);
+	}
         /* fake horizontal conversion table entries */
-        for (counter = 0; counter < fromWidth; ++counter)
-          xTable[counter] = counter % (toWidth - 1);
+        for (counter = 0; counter < fromWidth; ++counter) {
+	  if (counter > toWidth - 1)	xTable[counter] = toWidth - 1;
+          else				xTable[counter] = counter % (toWidth - 1);
+	}
     } else {
         /* vertical conversion table */
         for (counter = 0; counter < fromHeight; ++counter)
